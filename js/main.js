@@ -3,7 +3,8 @@ let notForm = document.querySelector("#idNotForm")
 let noteAdd = document.querySelector(".note-add")
 let inputNote = document.querySelector("#idInputNote")
 let inputTitle = document.querySelector("#idInputTitle")
-let cardWorking = document.querySelector(".card-working")
+let noteCards = document.querySelector(".card-notes")
+let noteCard = document.querySelector(".card-note")
 let cancelPopop = document.querySelector(".btn-x")
 
 let arryYapacaklarim = localStorage.getItem("yapacaklarim") ? JSON.parse(localStorage.getItem("yapacaklarim")) : []
@@ -30,7 +31,7 @@ notForm.addEventListener("submit", (event) => {
     arryYapacaklarim.push(newObj)
     localStorage.setItem("yapacaklarim", JSON.stringify(arryYapacaklarim) )
     // html olarak ta yazar
-    cardWorking.innerHTML += fncCardNote(newObj.baslik, newObj.not)
+    noteCards.innerHTML += fncCardNote(newObj.baslik, newObj.not)
 
     /* işlemden sonra */
     inputNote.value = ""
@@ -42,11 +43,11 @@ function writeDataToList(dizi){
     dizi.forEach( (element) => {
         let baslik = element.baslik
         let not = element.not
-        cardWorking.innerHTML += fncCardNote(baslik, not)
+        noteCards.innerHTML += fncCardNote(baslik, not)
     });
 }
 
-/* not kartının içerisini doldurur */
+/* not kartının modülü - içerisini doldurur */
 function fncCardNote(baslik, not){
     return `<div class="card-note p-2 my-2">
     <h5>${baslik}</h5>
@@ -58,3 +59,7 @@ function fncCardNote(baslik, not){
     </div>
 </div>`
 }
+
+
+// silme işlemi için
+console.log(noteCards.childElementCount)    //eleman sayısını don
